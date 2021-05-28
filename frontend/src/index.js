@@ -27,11 +27,23 @@ import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 import HomePage from './pages/HomePage';
 import ScrollToTop from './components/ScrollToTop';
+import { Connector } from 'mqtt-react-hooks';
+import { ADAFRUIT_KEY, ADAFRUIT_USER } from 'const';
 
 ReactDOM.render(
-  <HashRouter>
-    <ScrollToTop />
-    <HomePage />
-  </HashRouter>,
+  <Connector
+    brokerUrl="wss://io.adafruit.com:443"
+    options={{
+      username: ADAFRUIT_USER,
+      password: ADAFRUIT_KEY,
+      connectTimeout: 60 * 1000,
+      keepalive: 3600,
+    }}
+  >
+    <HashRouter>
+      <ScrollToTop />
+      <HomePage />
+    </HashRouter>
+  </Connector>,
   document.getElementById('root')
 );
