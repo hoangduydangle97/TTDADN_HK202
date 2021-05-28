@@ -14,5 +14,5 @@ export const DEVICE_TYPE_TEXT = {
   [DEVICE_TYPE.WATER_PUMP]: 'Bơm nước',
 };
 
-export const ADAFRUIT_KEY = 'aio_EHLM89SOMhNiEzVOcvRjGTqkPlPp';
+export const ADAFRUIT_KEY = 'aio_lFVx06P4Z00tYzwWVIbSqpmPiT5C';
 export const ADAFRUIT_USER = 'quangtuan2440';

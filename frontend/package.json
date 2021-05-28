@@ -26,6 +26,7 @@
     "bootstrap": "5.0.0-beta1",
     "chartist": "^0.11.4",
     "chartist-plugin-tooltips-updated": "^0.1.4",
+    "cross-env": "^7.0.3",
     "moment-timezone": "^0.5.31",
     "mqtt-react-hooks": "^2.0.0",
     "node-sass": "^4.14.1",
@@ -45,7 +46,7 @@
     "simplebar-react": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "build-local": "PUBLIC_URL=./ react-scripts build",
     "test": "react-scripts test",

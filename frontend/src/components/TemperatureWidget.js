@@ -76,6 +76,7 @@ export function LightWidget({ feed }) {
     />
   );
 }
+
 export function WaterPumpWidget({ feed }) {
   const { client } = useMqttState();
   const status = useFeedData(feed);

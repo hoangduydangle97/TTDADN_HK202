@@ -11,8 +11,18 @@ import {
   TemperatureWidget,
   WaterPumpWidget,
 } from '../components/TemperatureWidget';
+import { DeviceService } from 'services/devices.service';
+import { DEVICE_TYPE } from 'const';
 
 export function Dashboard() {
+  let [devices, setDevices] = React.useState([]);
+
+  React.useEffect(() => {
+    DeviceService.getAll().then((res) => {
+      setDevices(res.data);
+    });
+  }, []);
+
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
@@ -40,18 +50,43 @@ export function Dashboard() {
       </div>
 
       <Row className="justify-content-md-center">
-        <Col xs={6} className="mb-4">
-          <TemperatureWidget feed="temperature" />
-        </Col>
-        <Col xs={6} className="mb-4">
-          <GasWidget feed="gas" />
-        </Col>
-        <Col xs={6} className="mb-4">
-          <WaterPumpWidget feed="pump" />
-        </Col>
-        <Col xs={6} className="mb-4">
-          <LightWidget feed="led" />
-        </Col>
+        {devices &&
+          devices.map((device) => {
+            console.log('DEVICE', device);
+            switch (Number.parseInt(device.type)) {
+              case DEVICE_TYPE.TEMPERATURE_SENSOR:
+                console.log('TEMPERATURE_SENSOR', device);
+                return (
+                  <Col key={device.id} xs={6} className="mb-4">
+                    <TemperatureWidget feed={device.feed} />
+                  </Col>
+                );
+              case DEVICE_TYPE.GAS_SENSOR:
+                console.log('TEMPERATURE_SENSOR', device);
+                return (
+                  <Col key={device.id} xs={6} className="mb-4">
+                    <GasWidget feed={device.feed} />
+                  </Col>
+                );
+              case DEVICE_TYPE.LIGHT:
+                console.log('TEMPERATURE_SENSOR', device);
+                return (
+                  <Col key={device.id} xs={6} className="mb-4">
+                    <LightWidget feed={device.feed} />
+                  </Col>
+                );
+              case DEVICE_TYPE.WATER_PUMP:
+                console.log('TEMPERATURE_SENSOR', device);
+                return (
+                  <Col key={device.id} xs={6} className="mb-4">
+                    <WaterPumpWidget feed={device.feed} />
+                  </Col>
+                );
+
+              default:
+                break;
+            }
+          })}
       </Row>
     </>
   );
