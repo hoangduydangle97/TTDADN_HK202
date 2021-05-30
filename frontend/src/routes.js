@@ -4,7 +4,7 @@ export const Routes = {
   // pages
   Presentation: { path: '/' },
   Signin: { path: '/sign-in' },
-  Signup: { path: '/sign-in' },
+  Signup: { path: '/sign-up' },
   Devices: {
     icon: faMicrochip,
     list: '/devices',
