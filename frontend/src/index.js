@@ -13,6 +13,7 @@
 
 // * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
 
+import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
@@ -28,14 +29,16 @@ import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import HomePage from './pages/HomePage';
 import ScrollToTop from './components/ScrollToTop';
 import { Connector } from 'mqtt-react-hooks';
-import { ADAFRUIT_KEY, ADAFRUIT_USER } from 'const';
+import { __ADAFRUIT_KEY__, __ADAFRUIT_USER__ } from 'share/environments';
+
+dotenv.config();
 
 ReactDOM.render(
   <Connector
     brokerUrl="wss://io.adafruit.com:443"
     options={{
-      username: ADAFRUIT_USER,
-      password: ADAFRUIT_KEY,
+      username: __ADAFRUIT_USER__,
+      password: __ADAFRUIT_KEY__,
       connectTimeout: 60 * 1000,
       keepalive: 3600,
     }}

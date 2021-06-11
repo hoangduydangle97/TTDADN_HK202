@@ -13,6 +13,3 @@ export const DEVICE_TYPE_TEXT = {
   [DEVICE_TYPE.LIGHT]: 'Đèn báo động',
   [DEVICE_TYPE.WATER_PUMP]: 'Bơm nước',
 };
-
-export const ADAFRUIT_KEY = 'aio_LEyF99u7kyrhSrIjGUZwll9E3yxV';
-export const ADAFRUIT_USER = 'quangtuan2440';

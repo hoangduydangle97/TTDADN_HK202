@@ -1,9 +1,9 @@
 import Axios from 'axios';
-import { ADAFRUIT_KEY, ADAFRUIT_USER, TOKEN_PATH } from '../const';
 import { makeUseAxios } from 'axios-hooks';
+import { __ADAFRUIT_KEY__, __ADAFRUIT_USER__ } from '../share/environments';
 
 const axios = Axios.create({
-  baseURL: `https://io.adafruit.com/api/v2/${ADAFRUIT_USER}`,
+  baseURL: `https://io.adafruit.com/api/v2/${__ADAFRUIT_USER__}`,
 });
 
 // request interceptor to add token to request headers
@@ -13,7 +13,7 @@ axios.interceptors.request.use(
 
     // if (token) {
     config.headers = {
-      'X-AIO-Key': ADAFRUIT_KEY,
+      'X-AIO-Key': __ADAFRUIT_KEY__,
     };
     // }
     return config;
