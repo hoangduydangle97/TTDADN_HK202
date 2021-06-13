@@ -11,12 +11,16 @@ router.put(
     body('name').trim().notEmpty(),
     body('feed').trim().notEmpty(),
     body('type').trim().notEmpty(),
+    body('room').trim().notEmpty(),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { name, feed, type } = req.body;
+    const { name, feed, type, room } = req.body;
     const _id = req.params.id;
-    const device = await Device.findOneAndUpdate({ _id }, { name, feed, type });
+    const device = await Device.findOneAndUpdate(
+      { _id },
+      { name, feed, type, room }
+    );
 
     if (!device) throw new BadRequestError('Device is not existed');
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Row, Card, Form, Button } from '@themesberg/react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
@@ -6,9 +6,11 @@ import { Routes } from 'routes';
 import { DeviceService } from '../../services/devices.service';
 import { DEVICE_TYPE } from 'const';
 import { DEVICE_TYPE_TEXT } from '../../const';
+import { RoomService } from 'services/rooms.service';
 
 export const DeviceCreate = ({ match }) => {
   const { id } = match.params;
+  const [rooms, setRooms] = useState([]);
 
   let history = useHistory();
   const {
@@ -34,7 +36,11 @@ export const DeviceCreate = ({ match }) => {
         Object.keys(device).forEach((key) => setValue(key, device[key]));
       });
     }
-  }, []);
+
+    RoomService.getAll().then((res) => {
+      setRooms(res.data);
+    });
+  }, [id]);
 
   return (
     <Card border="light" className="bg-white shadow-sm mb-4">
@@ -64,8 +70,6 @@ export const DeviceCreate = ({ match }) => {
                 />
               </Form.Group>
             </Col>
-          </Row>
-          <Row>
             <Col md={6} className="mb-3">
               <Form.Group>
                 <Form.Label>Type</Form.Label>
@@ -78,6 +82,20 @@ export const DeviceCreate = ({ match }) => {
                     return (
                       <option key={key} value={key}>
                         {DEVICE_TYPE_TEXT[key]}
+                      </option>
+                    );
+                  })}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col md={6} className="mb-3">
+              <Form.Group>
+                <Form.Label>Room</Form.Label>
+                <Form.Select {...register('data.room')} required>
+                  {Object.values(rooms).map((room) => {
+                    return (
+                      <option key={room.id} value={room.id}>
+                        {room.name}
                       </option>
                     );
                   })}

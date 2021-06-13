@@ -1,4 +1,4 @@
-import { faMicrochip } from '@fortawesome/free-solid-svg-icons';
+import { faDoorClosed, faMicrochip } from '@fortawesome/free-solid-svg-icons';
 
 export const Routes = {
   // pages
@@ -10,6 +10,13 @@ export const Routes = {
     list: '/devices',
     create: '/devices/create',
     edit: '/devices/edit/:id',
+  },
+  Rooms: {
+    icon: faDoorClosed,
+    list: '/rooms',
+    create: '/rooms/create',
+    edit: '/rooms/edit/:id',
+    devices: '/room/:id/devices',
   },
   Dashboard: { path: '/dashboard' },
 
