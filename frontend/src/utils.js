@@ -1,5 +1,5 @@
-import { ADAFRUIT_USER } from 'const';
+import { __ADAFRUIT_USER__ } from 'share/environments';
 
 export function getTopic(feed) {
-  return `${ADAFRUIT_USER}/feeds/${feed}`;
+  return `${__ADAFRUIT_USER__}/feeds/${feed}`;
 }

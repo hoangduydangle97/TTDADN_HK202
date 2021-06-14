@@ -4,14 +4,8 @@ import { useLocation } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBook,
-  faBoxOpen,
-  faChartPie,
   faCog,
-  faFileAlt,
-  faHandHoldingUsd,
   faSignOutAlt,
-  faTable,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -19,14 +13,12 @@ import {
   Badge,
   Image,
   Button,
-  Dropdown,
   Accordion,
   Navbar,
 } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { Routes } from '../routes';
-import ThemesbergLogo from '../assets/img/themesberg.svg';
 import ReactHero from '../assets/img/technologies/react-hero-logo.svg';
 import ProfilePicture from '../assets/img/team/profile-picture-3.jpg';
 
@@ -178,10 +170,17 @@ export default (props = {}) => {
               />
 
               <NavItem
+                title="Rooms"
+                link={Routes.Rooms.list}
+                icon={Routes.Rooms.icon}
+              />
+
+              <NavItem
                 title="Devices"
                 link={Routes.Devices.list}
                 icon={Routes.Devices.icon}
               />
+
               <NavItem
                 title="Settings"
                 icon={faCog}

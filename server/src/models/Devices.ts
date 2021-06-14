@@ -1,9 +1,11 @@
 import mongoose from 'mongoose';
+import { CollectionName } from './CollectionName';
 
 interface DeviceAttrs {
   name: string;
   feed: string;
   type: string;
+  room: mongoose.Types.ObjectId;
 }
 
 interface DeviceModel extends mongoose.Model<DeviceDoc> {
@@ -14,6 +16,7 @@ interface DeviceDoc extends mongoose.Document {
   name: string;
   feed: string;
   type: string;
+  room: mongoose.Types.ObjectId;
 }
 
 const deviceSchema = new mongoose.Schema(
@@ -30,6 +33,7 @@ const deviceSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    room: { type: mongoose.Schema.Types.ObjectId, ref: CollectionName.Room },
   },
   {
     toJSON: {
@@ -47,6 +51,9 @@ deviceSchema.statics.build = (attrs: DeviceAttrs) => {
   return new Device(attrs);
 };
 
-const Device = mongoose.model<DeviceDoc, DeviceModel>('Device', deviceSchema);
+const Device = mongoose.model<DeviceDoc, DeviceModel>(
+  CollectionName.Device,
+  deviceSchema
+);
 
 export { Device };

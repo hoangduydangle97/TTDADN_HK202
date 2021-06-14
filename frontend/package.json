@@ -27,6 +27,7 @@
     "chartist": "^0.11.4",
     "chartist-plugin-tooltips-updated": "^0.1.4",
     "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
     "moment-timezone": "^0.5.31",
     "mqtt-react-hooks": "^2.0.0",
     "node-sass": "^4.14.1",

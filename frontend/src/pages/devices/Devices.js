@@ -20,7 +20,7 @@ import { DeviceService } from 'services/devices.service';
 import { DEVICE_TYPE_TEXT } from '../../const';
 
 const DeviceRow = (props) => {
-  const { id, name, feed, type, onDelete } = props;
+  const { id, name, feed, type, onDelete, room } = props;
 
   return (
     <Tr>
@@ -30,6 +30,9 @@ const DeviceRow = (props) => {
       </Td>
       <Td>
         <span className="fw-normal">{DEVICE_TYPE_TEXT[type]}</span>
+      </Td>
+      <Td>
+        <span className="fw-normal">{room?.name}</span>
       </Td>
       <Td>
         <Dropdown as={ButtonGroup}>
@@ -100,6 +103,7 @@ export function Devices() {
                 <Th>Device name</Th>
                 <Th>Device feed</Th>
                 <Th>Type</Th>
+                <Th>Room</Th>
                 <Th>Action</Th>
               </Tr>
             </Thead>

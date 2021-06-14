@@ -10,15 +10,17 @@ router.post(
     body('name').trim().notEmpty(),
     body('feed').trim().notEmpty(),
     body('type').trim().notEmpty(),
+    body('room').trim().notEmpty(),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { name, feed, type } = req.body;
+    const { name, feed, type, room } = req.body;
 
     const device = Device.build({
       name,
       feed,
       type,
+      room,
     });
 
     await device.save();

@@ -20,6 +20,9 @@ import Preloader from '../components/Preloader';
 import { Devices } from './devices/Devices';
 import { DeviceCreate } from './devices/DeviceCreate';
 import { Dashboard } from './Dashboard';
+import { Rooms } from './rooms/Rooms';
+import { RoomCreate } from './rooms/RoomCreate';
+import { DevicesInRoom } from './devices/DevicesInRoom';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -83,6 +86,19 @@ export default () => (
       path={Routes.Devices.edit}
       component={DeviceCreate}
     />
+    <RouteWithSidebar exact path={Routes.Rooms.list} component={Rooms} />
+    <RouteWithSidebar
+      exact
+      path={Routes.Rooms.devices}
+      component={DevicesInRoom}
+    />
+    <RouteWithSidebar exact path={Routes.Rooms.create} component={RoomCreate} />
+    <RouteWithSidebar
+      exact
+      path={Routes.Devices.edit}
+      component={DeviceCreate}
+    />
+
     <RouteWithSidebar
       exact
       path={Routes.Dashboard.path}
