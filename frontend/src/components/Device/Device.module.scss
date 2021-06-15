@@ -9,6 +9,12 @@
 
   .Header {
     display: flex;
+    .Title {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin-left: 10px;
+    }
   }
 
   .Title {
@@ -18,7 +24,7 @@
   }
 
   .DeviceContainer{
-    border: 1px solid #EEE;
+    border: 2px solid black;
     padding: 10px;
     margin-bottom: 10px;
     box-sizing: border-box;
@@ -29,3 +35,13 @@
     margin-left: auto;
   }
 }
+
+.TemperatureControlContainer {
+  .Title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+}
+
+
