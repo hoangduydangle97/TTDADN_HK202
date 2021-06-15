@@ -17,8 +17,8 @@
     margin-bottom: 20px;
   }
 
-  .DeviceContainer{
-    border: 1px solid #EEE;
+  .DeviceContainer {
+    border: 1px solid #eee;
     padding: 10px;
     margin-bottom: 10px;
     box-sizing: border-box;
@@ -28,4 +28,51 @@
   .Switch {
     margin-left: auto;
   }
+}
+
+.ContentBox {
+  margin-bottom: 1rem;
+}
+
+.ContentBox .ContentTitle div {
+  margin-bottom: 15px;
+}
+
+.ContentBox .TimelineContent {
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 3px #cacaca;
+}
+
+.ContentBox .TimelineContent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ContentBox .TimelineContent ul li span {
+  color: #999;
+  display: block;
+  margin-bottom: -15px;
+  padding: 0 0 15px 20px;
+  position: relative;
+}
+
+.ContentBox .TimelineContent ul li span::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #b13636;
+  top: 5px;
+  left: 0;
+  border-radius: 50px;
+}
+
+.ContentBox .TimelineContent ul li h5 {
+  line-height: 30px;
+  border: 3px solid #bd5050;
+  border-width: 0 0 0 3px;
+  padding: 0 0 5px 16px;
+  margin-left: 5px;
 }

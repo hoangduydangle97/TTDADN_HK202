@@ -17,6 +17,7 @@ import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 // core styles
 import './scss/volt.scss';
@@ -32,7 +33,7 @@ import { Connector } from 'mqtt-react-hooks';
 import { __ADAFRUIT_KEY__, __ADAFRUIT_USER__ } from 'share/environments';
 
 dotenv.config();
-
+const queryClient = new QueryClient();
 ReactDOM.render(
   <Connector
     brokerUrl="wss://io.adafruit.com:443"
@@ -43,10 +44,13 @@ ReactDOM.render(
       keepalive: 3600,
     }}
   >
+    {/* <QueryClientProvider client={queryClient}> */}
+
     <HashRouter>
       <ScrollToTop />
       <HomePage />
     </HashRouter>
+    {/* </QueryClientProvider> */}
   </Connector>,
   document.getElementById('root')
 );

@@ -10,6 +10,7 @@ import { RoomService } from 'services/rooms.service';
 
 export const DeviceCreate = ({ match }) => {
   const { id } = match.params;
+  console.log("id", id);
   const [rooms, setRooms] = useState([]);
 
   let history = useHistory();
