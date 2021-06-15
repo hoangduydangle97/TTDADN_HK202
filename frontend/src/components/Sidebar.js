@@ -182,6 +182,12 @@ export default (props = {}) => {
               />
 
               <NavItem
+                title="Rules"
+                link={Routes.Rules.list}
+                icon={Routes.Rules.icon}
+              />
+
+              <NavItem
                 title="Settings"
                 icon={faCog}
                 link={Routes.Settings.path}

@@ -23,6 +23,8 @@ import { Dashboard } from './Dashboard';
 import { Rooms } from './rooms/Rooms';
 import { RoomCreate } from './rooms/RoomCreate';
 import { DevicesInRoom } from './devices/DevicesInRoom';
+import { Rules } from './rules/Rules';
+import { RuleCreate } from './rules/RuleCreate';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -98,6 +100,9 @@ export default () => (
       path={Routes.Devices.edit}
       component={DeviceCreate}
     />
+    <RouteWithSidebar exact path={Routes.Rules.list} component={Rules} />
+    <RouteWithSidebar exact path={Routes.Rules.create} component={RuleCreate} />
+    <RouteWithSidebar exact path={Routes.Rules.edit} component={RuleCreate} />
 
     <RouteWithSidebar
       exact
