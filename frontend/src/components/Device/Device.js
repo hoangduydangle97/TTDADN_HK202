@@ -1,65 +1,181 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ControlsSwitcher from "./ControlsSwitcher/ControlsSwitcher";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFire,
+  faTemperatureLow,
+  faLightbulb,
+  faTint,
+} from '@fortawesome/free-solid-svg-icons';
+import { Col, Row, Card } from '@themesberg/react-bootstrap';
+import { useMqttState } from 'mqtt-react-hooks';
+import { getTopic } from '../../utils';
+import { useFeedData } from '../../hooks/useFeedData';
 
 import classes from "./Device.module.scss";
-import Switch from "./../UI/Switch/Switch";
+import Switch from '../UI/Switch/Switch';
+import ModeControl from './Controls/Mode/ModeControl';
+import TemperatureControl from './Controls/Temperature/TemperatureControl';
 
-export default class Device extends Component {
-  static propTypes = {
-    deviceId: PropTypes.string,
-    device: PropTypes.object,
-    onToggleDeviceSwitch: PropTypes.func,
-    onControlValueChanged: PropTypes.func
-  };
+export const CustomWidget = (props) => {
+  const { icon, iconColor, title, onClick, value, sw} = props;
 
-  /**
-   * Event fired when the value of a control is changed
-   */
-  onControlValueChangedHandler = (controlId, newValue) => {
-    this.props.onControlValueChanged(this.props.deviceId, controlId, newValue);
-  };
-
-  render() {
-    if (!this.props.device) return;
-
-    // Checks it has controls before rendering them
-    let deviceControls;
-    if (
-      this.props.device.controls &&
-      !!Object.values(this.props.device.controls).length
-    ) {
-      deviceControls = Object.entries(this.props.device.controls).map(
-        device => {
-          const controlId = device[0];
-          const deviceData = device[1];
-          return (
-            <div key={controlId} className={classes.DeviceContainer}>
-              <ControlsSwitcher
-                controlId={controlId}
-                deviceData={deviceData}
-                onUpdateValue={this.onControlValueChangedHandler}
-              />
-            </div>
-          );
-        }
-      );
-    }
-
-    return (
-      <div className={classes.Device}>
-        <div className={classes.Header}>
-          <div>{this.props.device.icon}</div>
-          <div className={classes.Title}>{this.props.device.name}</div>
-          <div className={classes.Switch}>
-            <Switch
-              onChange={this.props.onToggleDeviceSwitch}
-              checked={this.props.device.switch}
-            />
-          </div>
-        </div>
-        <div>{deviceControls}</div>
+  return (
+    <div className={classes.Header}>
+      <div className={classes.Title}>
+      <FontAwesomeIcon icon={icon} />      {title}
       </div>
-    );
+      {sw && <div className={classes.Switch}>
+        <Switch
+          onChange={onClick}
+          checked={value}
+        />
+      </div>}
+    </div>
+  );
+};
+
+export function TemperatureWidget({ feed }) {
+  const status = useFeedData(feed);
+  const controlProps = {
+    controlId: feed,
+    name: 'Mode',
+    //onUpdateValue: () => {},
+    max: 100,
+    min: 0,
+    type: 'temperature',
+    unit: 'c',
+    value: status,
+  };
+
+  return (
+    <div className={classes.Device}>
+      <CustomWidget title="Temperature" icon={faTemperatureLow} sw={false} />
+      <div className={classes.DeviceContainer}>
+        <div className={classes.TemperatureControlContainer}>
+          <div className={classes.Title} data-test="device-title">
+            Mode
+          </div>
+          <TemperatureControl {...controlProps} />
+        </div>
+      </div>
+    </div>
+  );
+}
+export function GasWidget({ feed }) {
+  const status = useFeedData(feed);
+
+  const controlProps = {
+    controlId: feed,
+    name: 'Mode',
+    //onUpdateValue: () => {},
+    options: {
+      OFF: {name: 'NORMAL', icon: ''},
+      ON: {name: 'DANGER', icon: ''}
+    },
+    type: 'mode',
+    value: status,
+  };
+
+  return (
+    <div className={classes.Device}>
+      <CustomWidget
+      title="Gas"
+      icon={faFire}
+      sw={false}
+    />
+      
+      <div className={classes.DeviceContainer}>
+        <div className={classes.TemperatureControlContainer}>
+          <div className={classes.Title} data-test="device-title">
+            Mode
+          </div>
+          <ModeControl {...controlProps} />
+        </div>
+      </div>
+    </div>
+  );
+}
+export function LightWidget({ feed }) {
+  const { client } = useMqttState();
+  const status = useFeedData(feed);
+
+  function handleClick() {
+    return client.publish(getTopic(feed), status === 'ON' ? 'OFF' : 'ON');
   }
+
+  const controlProps = {
+    controlId: feed,
+    name: 'Mode',
+    //onUpdateValue: handleClick,
+    options: {
+      OFF: {name: 'OFF', icon: ''},
+      ON: {name: 'ON', icon: ''}
+    },
+    type: 'mode',
+    value: status,
+  };
+
+  return (
+    <div className={classes.Device}>
+      <CustomWidget
+      key={feed}
+      onClick={handleClick}
+      title="Light"
+      icon={faLightbulb}
+      sw = {true}
+      value = {status === 'ON'? true : false}
+      />
+      
+      <div className={classes.DeviceContainer}>
+        <div className={classes.TemperatureControlContainer}>
+          <div className={classes.Title} data-test="device-title">
+            Mode
+          </div>
+          <ModeControl {...controlProps} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function WaterPumpWidget({ feed }) {
+  const { client } = useMqttState();
+  const status = useFeedData(feed);
+
+  function handleClick() {
+    return client.publish(getTopic(feed), status === 'ON' ? 'OFF' : 'ON');
+  }
+
+  const controlProps = {
+    controlId: feed,
+    name: 'Mode',
+    //onUpdateValue: handleClick,
+    options: {
+      OFF: {name: 'OFF', icon: ''},
+      ON: {name: 'ON', icon: ''}
+    },
+    type: 'mode',
+    value: status,
+  };
+
+  return (
+    <div className={classes.Device}>
+      <CustomWidget
+      key={feed}
+      onClick={handleClick}
+      title="Water Pump"
+      icon={faTint}
+      sw = {true}
+      value = {status === 'ON'? true : false}
+    />
+      <div className={classes.DeviceContainer}>
+        <div className={classes.TemperatureControlContainer}>
+          <div className={classes.Title} data-test="device-title">
+            Mode
+          </div>
+          <ModeControl {...controlProps} />
+        </div>
+      </div>
+    </div>
+  );
 }

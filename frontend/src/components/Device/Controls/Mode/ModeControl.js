@@ -9,16 +9,16 @@ export default class ModeControl extends Component {
     controlId: PropTypes.string,
     name: PropTypes.string,
     value: PropTypes.string,
-    onUpdateValue: PropTypes.func,
+    //onUpdateValue: PropTypes.func,
     options: PropTypes.object
   };
 
-  onChangeModeHandler = event => {
-    const updatedValue = event.target.value;
-    if (updatedValue !== this.props.value) {
-      this.props.onUpdateValue(this.props.controlId, updatedValue);
-    }
-  };
+  // onChangeModeHandler = event => {
+  //   const updatedValue = event.target.value;
+  //   if (updatedValue !== this.props.value) {
+  //     this.props.onUpdateValue();
+  //   }
+  // };
 
   render() {
     if (!this.props.options) return null;
@@ -38,7 +38,7 @@ export default class ModeControl extends Component {
             value={openKey}
             className={classes.Radio}
             checked={isChecked}
-            onChange={this.onChangeModeHandler}
+            //onChange={this.onChangeModeHandler}
           />
           <label htmlFor={radioId} className={classes.Label}>
             {option.icon ? (
