@@ -1,11 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import classes from "./Button.module.scss";
+import classes from './Button.module.scss';
 
 function Button(props) {
   return (
-    <button className={classes.Button + " " + props.className} onClick={props.onClick}>
+    <button
+      className={classes.Button + ' ' + props.className}
+      onClick={props.onClick}
+    >
       {props.children}
     </button>
   );
@@ -13,7 +16,8 @@ function Button(props) {
 
 Button.propTypes = {
   onClick: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: Element,
 };
 
 export default Button;

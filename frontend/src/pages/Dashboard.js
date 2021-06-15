@@ -38,6 +38,14 @@ export function Dashboard() {
               <FontAwesomeIcon icon={Routes.Devices.icon} className="me-2" />{' '}
               New device
             </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to={Routes.Rules.create}
+              className="fw-bold"
+            >
+              <FontAwesomeIcon icon={Routes.Rules.icon} className="me-2" /> New
+              rules
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>

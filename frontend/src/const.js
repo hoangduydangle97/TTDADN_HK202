@@ -1,5 +1,11 @@
 export const TOKEN_PATH = 'token';
 
+export const RULE_OPERATOR = {
+  EQUAL: '=',
+  GREATER_THAN: '>',
+  LESS_THAN: '<',
+};
+
 export const DEVICE_TYPE = {
   TEMPERATURE_SENSOR: 1,
   GAS_SENSOR: 2,

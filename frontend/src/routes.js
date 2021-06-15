@@ -1,4 +1,12 @@
-import { faDoorClosed, faMicrochip } from '@fortawesome/free-solid-svg-icons';
+import {
+  faDoorClosed,
+  faMicrochip,
+  faTasks,
+} from '@fortawesome/free-solid-svg-icons';
+
+const prefixDevice = 'devices';
+const prefixRoom = 'rooms';
+const prefixExample = 'examples';
 
 export const Routes = {
   // pages
@@ -7,23 +15,35 @@ export const Routes = {
   Signup: { path: '/sign-up' },
   Devices: {
     icon: faMicrochip,
-    list: '/devices',
-    create: '/devices/create',
-    edit: '/devices/edit/:id',
+    prefix: `/${prefixDevice}`,
+    list: `/${prefixDevice}/list`,
+    create: `/${prefixDevice}/create`,
+    edit: `/${prefixDevice}/edit/:id`,
+    history: `/${prefixDevice}/:id/history`,
   },
   Rooms: {
     icon: faDoorClosed,
-    list: '/rooms',
-    create: '/rooms/create',
-    edit: '/rooms/edit/:id',
-    devices: '/room/:id/devices',
+    prefix: `/${prefixRoom}`,
+    list: `/${prefixRoom}`,
+    create: `/${prefixRoom}/create`,
+    edit: `/${prefixRoom}/edit/:id`,
+    devices: `/${prefixRoom}/:id/devices`,
+  },
+  Rules: {
+    icon: faTasks,
+    list: '/rules',
+    create: '/rules/create',
+    edit: '/rules/edit/:id',
   },
   Dashboard: { path: '/dashboard' },
 
   Settings: { path: '/settings' },
-  ForgotPassword: { path: '/examples/forgot-password' },
-  ResetPassword: { path: '/examples/reset-password' },
-  Lock: { path: '/examples/lock' },
-  NotFound: { path: '/examples/404' },
-  ServerError: { path: '/examples/500' },
+  Examples: {
+    prefix: `/${prefixExample}`,
+    ForgotPassword: `/${prefixExample}/forgot-password`,
+    ResetPassword: '`/${prefixExample}/reset-password`',
+    Lock: `/${prefixExample}/lock`,
+    NotFound: `/${prefixExample}/404`,
+    ServerError: `/${prefixExample}/500`,
+  },
 };

@@ -1,4 +1,4 @@
-@import "../../styles/utils/utils";
+@import '../../styles/utils/utils';
 
 .Device {
   border-radius: 6px;
@@ -9,6 +9,12 @@
 
   .Header {
     display: flex;
+    .Title {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin-left: 10px;
+    }
   }
 
   .Title {
@@ -17,8 +23,8 @@
     margin-bottom: 20px;
   }
 
-  .DeviceContainer{
-    border: 1px solid #EEE;
+  .DeviceContainer {
+    border: 2px solid black;
     padding: 10px;
     margin-bottom: 10px;
     box-sizing: border-box;
@@ -27,5 +33,13 @@
 
   .Switch {
     margin-left: auto;
+  }
+}
+
+.TemperatureControlContainer {
+  .Title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1rem;
   }
 }

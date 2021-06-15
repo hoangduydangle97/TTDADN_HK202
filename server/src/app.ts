@@ -10,13 +10,14 @@ import { NotFoundError } from './utils/errors/not-found-error';
 import userRoute from './routes/users';
 import deviceRouter from './routes/devices';
 import roomRouter from './routes/rooms';
+import ruleRouter from './routes/rules';
 
 const app = express();
 // app.set('trust proxy', true);
 app.use(cors({ credentials: true }));
 app.use(json());
 
-app.use('/api', userRoute, deviceRouter, roomRouter);
+app.use('/api', userRoute, deviceRouter, roomRouter, ruleRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
