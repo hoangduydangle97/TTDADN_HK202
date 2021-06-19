@@ -1,18 +1,19 @@
-import Navbar from 'components/Navbar';
-import Preloader from 'components/Preloader';
-import Sidebar from 'components/Sidebar';
-import React, { useEffect, useState } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { Routes } from 'routes';
-import { Dashboard } from './Dashboard';
-import { DevicePage } from './devices';
-import { ExamplePage } from './examples';
-import { RoomPage } from './rooms';
-import { RuleCreate } from './rules/RuleCreate';
-import { Rules } from './rules/Rules';
-import Settings from './Settings';
-import Signin from './Signin';
-import Signup from './Signup';
+import Navbar from "components/Navbar";
+import Preloader from "components/Preloader";
+import Sidebar from "components/Sidebar";
+import React, { useEffect, useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import { Routes } from "routes";
+import { Dashboard } from "./Dashboard";
+import { DevicePage } from "./devices";
+import { TemperatureChart } from "./devices/TemperatureChart";
+import { ExamplePage } from "./examples";
+import { RoomPage } from "./rooms";
+import { RuleCreate } from "./rules/RuleCreate";
+import { Rules } from "./rules/Rules";
+import Settings from "./Settings";
+import Signin from "./Signin";
+import Signup from "./Signup";
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -27,8 +28,8 @@ const RouteWithLoader = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) => (
         <>
-          {' '}
-          <Preloader show={loaded ? false : true} /> <Component {...props} />{' '}
+          {" "}
+          <Preloader show={loaded ? false : true} /> <Component {...props} />{" "}
         </>
       )}
     />
@@ -73,6 +74,8 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Rules.list} component={Rules} />
     <RouteWithSidebar exact path={Routes.Rules.create} component={RuleCreate} />
     <RouteWithSidebar exact path={Routes.Rules.edit} component={RuleCreate} />
+
+    <RouteWithSidebar exact path="/chart" component={TemperatureChart} />
 
     <RouteWithLoader path={Routes.Examples.prefix} component={ExamplePage} />
     <RouteWithSidebar

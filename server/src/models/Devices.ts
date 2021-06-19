@@ -1,6 +1,13 @@
 import mongoose from 'mongoose';
 import { CollectionName } from './CollectionName';
 
+export const DEVICE_TYPE = {
+  TEMPERATURE_SENSOR: 1,
+  GAS_SENSOR: 2,
+  LIGHT: 3,
+  WATER_PUMP: 4,
+};
+
 interface DeviceAttrs {
   name: string;
   feed: string;

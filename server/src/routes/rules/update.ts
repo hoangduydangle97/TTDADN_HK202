@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { validateRequest } from '../../middlewares/validate-request';
 import { Rule } from '../../models/Rules';
+import { mqttAutomation } from '../../mqtt-automation';
 import { BadRequestError } from '../../utils/errors/bad-request-error';
 const router = express.Router();
 
@@ -40,6 +41,8 @@ router.put(
     );
 
     if (!rule) throw new BadRequestError('Rule is not existed');
+
+    await mqttAutomation.updateListeners();
 
     return res.status(200).send(true);
   }

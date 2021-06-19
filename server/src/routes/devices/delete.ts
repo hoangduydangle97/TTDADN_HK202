@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { Device } from '../../models/Devices';
+import { mqttAutomation } from '../../mqtt-automation';
 import { BadRequestError } from '../../utils/errors/bad-request-error';
 
 const router = express.Router();
@@ -11,6 +12,8 @@ router.delete('/:id', async (req: Request, res: Response) => {
   if (!device) throw new BadRequestError('Device is not existed');
 
   device.remove();
+
+  await mqttAutomation.updateListeners();
 
   return res.status(200).send(true);
 });
