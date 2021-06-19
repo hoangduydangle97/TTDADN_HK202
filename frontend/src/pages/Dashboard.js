@@ -6,6 +6,7 @@ import { Button, Dropdown } from '@themesberg/react-bootstrap';
 import { Routes } from 'routes';
 import { Link } from 'react-router-dom';
 import { RoomsDashboard } from './rooms/RoomsDasboard';
+import FireAlarm from 'components/FireAlarm/FireAlarm';
 
 export function Dashboard() {
   return (
@@ -49,7 +50,6 @@ export function Dashboard() {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-
       <RoomsDashboard />
     </>
   );

@@ -24,6 +24,7 @@ import {
 
 import NOTIFICATIONS_DATA from '../data/notifications';
 import Profile3 from '../assets/img/team/profile-picture-3.jpg';
+import FireAlarm from './FireAlarm/FireAlarm';
 
 export default (props) => {
   const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
@@ -82,6 +83,7 @@ export default (props) => {
             </Form> */}
           </div>
           <Nav className="align-items-center">
+            <FireAlarm/>
             <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead}>
               <Dropdown.Toggle
                 as={Nav.Link}

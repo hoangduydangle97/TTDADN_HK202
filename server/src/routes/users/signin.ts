@@ -5,6 +5,7 @@ import { validateRequest } from '../../middlewares/validate-request';
 import { User } from '../../models/User';
 import { Password } from '../../services/password';
 import { BadRequestError } from '../../utils/errors/bad-request-error';
+import { __JWT_KEY__ } from '../../utils/environments';
 const router = express.Router();
 
 router.post(
@@ -39,7 +40,7 @@ router.post(
         id: existingUser.id,
         email: existingUser.email,
       },
-      process.env.JWT_KEY!
+      __JWT_KEY__!
     );
 
     return res.status(200).send({ token: userJwt, ...existingUser.toJSON() });
