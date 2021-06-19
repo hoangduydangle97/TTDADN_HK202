@@ -21,7 +21,7 @@ export function RoomsDashboard() {
   return (
     <>
       {rooms.map((room) => (
-        <div className="mb-3" onClick={() => navigateToDevicesInRoom(room.id)}>
+        <div key={room.id} className="mb-3" onClick={() => navigateToDevicesInRoom(room.id)}>
           <Room
             key={room.id}
             name={room.name}
