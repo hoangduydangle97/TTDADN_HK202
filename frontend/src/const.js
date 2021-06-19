@@ -20,16 +20,16 @@ export const DEVICE_TYPE_TEXT = {
   [DEVICE_TYPE.WATER_PUMP]: "Bơm nước",
 };
 
-export const ENUM_TIME_TEMP_CHART = {
+export const TIME_TYPE = {
   HOUR: "HOUR",
   DAY: "DAY",
   WEEK: "WEEK",
   MONTH: "MONTH",
 };
 
-export const SELECT_TIME_FOR_TEMP_CHART = {
-  HOUR: "1 giờ",
-  DAY: "1 ngày",
-  WEEK: "1 tuần",
-  MONTH: "1 tháng",
+export const TIME_TYPE_TEXT = {
+  [TIME_TYPE.HOUR]: "1 giờ",
+  [TIME_TYPE.DAY]: "1 ngày",
+  [TIME_TYPE.WEEK]: "1 tuần",
+  [TIME_TYPE.MONTH]: "1 tháng",
 };
