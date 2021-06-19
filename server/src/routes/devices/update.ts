@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { validateRequest } from '../../middlewares/validate-request';
 import { Device } from '../../models/Devices';
+import { mqttAutomation } from '../../mqtt-automation';
 import { BadRequestError } from '../../utils/errors/bad-request-error';
 const router = express.Router();
 
@@ -23,6 +24,8 @@ router.put(
     );
 
     if (!device) throw new BadRequestError('Device is not existed');
+
+    await mqttAutomation.updateListeners();
 
     return res.status(200).send(true);
   }

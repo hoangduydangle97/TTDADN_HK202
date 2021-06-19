@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { validateRequest } from '../../middlewares/validate-request';
 import { Device } from '../../models/Devices';
+import { mqttAutomation } from '../../mqtt-automation';
 const router = express.Router();
 
 router.post(
@@ -24,6 +25,8 @@ router.post(
     });
 
     await device.save();
+
+    await mqttAutomation.updateListeners();
 
     return res.status(200).send(device.toJSON());
   }

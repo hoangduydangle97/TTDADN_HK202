@@ -1,17 +1,11 @@
 import mongoose from 'mongoose';
 import { app } from './app';
+import { mqttAutomation } from './mqtt-automation';
+import { __MONGO_URI__ } from './utils/environments';
 
 const start = async () => {
-  if (!process.env.JWT_KEY) {
-    throw new Error('JWT_KEY must be defined');
-  }
-
-  if (!process.env.MONGO_URI) {
-    throw new Error('MONGO_URI must be defined');
-  }
-
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    await mongoose.connect(__MONGO_URI__, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       dbName: 'test',
@@ -25,8 +19,14 @@ const start = async () => {
   }
 };
 
-app.listen(5200, () => {
+app.listen(5200, async () => {
   console.log('Listening on port 5200');
+
+  let result = await mqttAutomation.connect().catch(console.log);
+  await mqttAutomation.subscribe('light');
+  await mqttAutomation.subscribe('temperature');
+  await mqttAutomation.subscribe('pump');
+  await mqttAutomation.updateListeners();
 });
 
 start();
