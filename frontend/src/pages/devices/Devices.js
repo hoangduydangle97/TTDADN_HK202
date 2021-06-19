@@ -3,21 +3,21 @@ import {
   faEdit,
   faTrashAlt,
   faPlus,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Card,
   ButtonGroup,
   Dropdown,
   Button,
-} from '@themesberg/react-bootstrap';
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Routes } from 'routes';
-import { axiosLocal } from '../../api/local-api';
-import { DeviceService } from 'services/devices.service';
-import { DEVICE_TYPE_TEXT } from '../../const';
+} from "@themesberg/react-bootstrap";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Routes } from "routes";
+import { axiosLocal } from "../../api/local-api";
+import { DeviceService } from "services/devices.service";
+import { DEVICE_TYPE_TEXT } from "../../const";
 
 const DeviceRow = (props) => {
   const { id, name, feed, type, onDelete, room } = props;
@@ -49,7 +49,7 @@ const DeviceRow = (props) => {
           <Dropdown.Menu>
             <Dropdown.Item
               as={Link}
-              to={Routes.Devices.edit.replace(':id', id)}
+              to={Routes.Devices.edit.replace(":id", id)}
             >
               <FontAwesomeIcon icon={faEdit} className="me-2" /> Edit
             </Dropdown.Item>
