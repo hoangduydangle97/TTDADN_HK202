@@ -1,4 +1,4 @@
-import { FormLabel, FormSelect } from "@themesberg/react-bootstrap";
+import { Card, FormLabel, FormSelect } from "@themesberg/react-bootstrap";
 // @ts-ignore
 import ChartistTooltip from "chartist-plugin-tooltips-updated";
 import { ENUM_TIME_TEMP_CHART, SELECT_TIME_FOR_TEMP_CHART } from "const";
@@ -6,12 +6,12 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Chartist from "react-chartist";
 import { AdafruitService } from "services/adafruit.service";
-import "./RoomDevices.module.scss";
+import classes from "./RoomDevices.module.scss";
 
 export const TemperatureChart = () => {
   const [tempData, settempData] = useState({ labels: [], series: [[]] });
   const [valueTimeSelect, setValueTimeSelect] = useState(
-    ENUM_TIME_TEMP_CHART.DAY
+    ENUM_TIME_TEMP_CHART.WEEK
   );
   const [spaceAxisX, setspaceAxisX] = useState(5);
   const [paramsTimeFetch, setParamsTimeFetch] = useState({
@@ -19,6 +19,7 @@ export const TemperatureChart = () => {
     start_time: "",
     end_time: "",
   });
+  const [loading, setloading] = useState(true);
 
   const data = {
     labels: tempData.labels,
@@ -50,33 +51,49 @@ export const TemperatureChart = () => {
       showLabel: true,
       labelInterpolationFnc: (value) => `${value / 1}°C`,
     },
+    chartPadding: {
+      right: 20,
+      left: 20,
+    },
   };
 
-  const plugins = [ChartistTooltip()];
+  const [plugins, setPlugins] = useState(() => [ChartistTooltip()]);
+
+  // const plugins = [ChartistTooltip()];
+
+  function mapChartData(resData) {
+    return {};
+  }
 
   useEffect(() => {
+    setloading(true);
+
     AdafruitService.getChartFeedData(
       "temperature",
       paramsTimeFetch.hours,
       paramsTimeFetch.start_time,
       paramsTimeFetch.end_time
-    ).then((data) => {
-      let series = [];
-      const totalData = data.data.data.length * 1;
-      setspaceAxisX(Math.floor(totalData / 5));
-      const labels = data.data.data.map((value) =>
-        new Date(value[0]).toLocaleString()
-      );
+    )
+      .then(mapChartData)
+      .then((data) => {
+        // let series = [];
+        // const totalData = data.data.data.length * 1;
+        // setspaceAxisX(Math.floor(totalData / 5));
+        // const labels = data.data.data.map((value) =>
+        //   new Date(value[0]).toLocaleString()
+        // );
 
-      const insideSeries = data.data.data.map((value) => value[1] * 1);
-      series.push(insideSeries);
+        // const insideSeries = data.data.data.map((value) => value[1] * 1);
+        // series.push(insideSeries);
 
-      settempData({
-        labels: labels,
-        series: series,
-      });
-    });
+        settempData(data);
+      })
+      .then(() => setloading(false));
   }, [valueTimeSelect]);
+
+  // function calCulateStartTimeEndTime(range: ENUM_TIME_TEMP_CHART) {
+
+  // }
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -126,24 +143,59 @@ export const TemperatureChart = () => {
     }
   };
 
-  return (
-    <>
-      <FormLabel>Time</FormLabel>
-      <FormSelect onChange={handleChange} value={valueTimeSelect} required>
-        {Object.keys(SELECT_TIME_FOR_TEMP_CHART).map((key, index) => {
-          return (
-            <option key={key} value={key}>
-              {SELECT_TIME_FOR_TEMP_CHART[key]}
-            </option>
-          );
-        })}
-      </FormSelect>
+  // var responsiveOptions = [
+  //   [
+  //     "screen and (min-width: 678px)",
+  //     {
+  //       chartPadding: {
+  //         right: 20,
+  //         left: 20,
+  //         bottom: 200,
+  //       },
+  //       seriesBarDistance: 10,
+  //     },
+  //   ],
+  //   [
+  //     "screen and (max-width: 640px)",
+  //     {
+  //       seriesBarDistance: 5,
+  //     },
+  //   ],
+  // ];
+
+  let Chart;
+
+  if (!loading) {
+    Chart = tempData.labels.length ? (
       <Chartist
         data={data}
         options={{ ...options, plugins }}
         type="Line"
-        className="ct-series-g ct-double-octave"
+        // className="ct-golden-section ct-series-g ct-double-octave ct-include-alternative-responsive-containers"
+        className="ct-chart ct-golden-section  "
       />
+    ) : (
+      <div>No data</div>
+    );
+  } else {
+    Chart = <div>loading...</div>;
+  }
+
+  return (
+    <>
+      <div className={classes.SelectTime}>
+        <FormLabel>Time</FormLabel>
+        <FormSelect onChange={handleChange} value={valueTimeSelect} required>
+          {Object.keys(SELECT_TIME_FOR_TEMP_CHART).map((key, index) => {
+            return (
+              <option key={key} value={key}>
+                {SELECT_TIME_FOR_TEMP_CHART[key]}
+              </option>
+            );
+          })}
+        </FormSelect>
+      </div>
+      {Chart}
     </>
   );
 };
