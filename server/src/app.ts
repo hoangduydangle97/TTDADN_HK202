@@ -1,25 +1,25 @@
-require('dotenv').config();
-import 'express-async-errors';
+require("dotenv").config();
+import "express-async-errors";
 
-import express from 'express';
-import { json } from 'body-parser';
-import cors from 'cors';
+import express from "express";
+import { json } from "body-parser";
+import cors from "cors";
 
-import { errorHandler } from './middlewares/error-handler';
-import { NotFoundError } from './utils/errors/not-found-error';
-import userRoute from './routes/users';
-import deviceRouter from './routes/devices';
-import roomRouter from './routes/rooms';
-import ruleRouter from './routes/rules';
+import { errorHandler } from "./middlewares/error-handler";
+import { NotFoundError } from "./utils/errors/not-found-error";
+import userRoute from "./routes/users";
+import deviceRouter from "./routes/devices";
+import roomRouter from "./routes/rooms";
+import ruleRouter from "./routes/rules";
 
 const app = express();
 // app.set('trust proxy', true);
 app.use(cors({ credentials: true }));
 app.use(json());
 
-app.use('/api', userRoute, deviceRouter, roomRouter, ruleRouter);
+app.use("/api", userRoute, deviceRouter, roomRouter, ruleRouter);
 
-app.all('*', async (req, res) => {
+app.all("*", async (req, res) => {
   throw new NotFoundError();
 });
 
