@@ -6,7 +6,6 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { Routes } from "routes";
 import { Dashboard } from "./Dashboard";
 import { DevicePage } from "./devices";
-import { TemperatureChart } from "./devices/TemperatureChart";
 import { ExamplePage } from "./examples";
 import { RoomPage } from "./rooms";
 import { RuleCreate } from "./rules/RuleCreate";
@@ -74,8 +73,6 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Rules.list} component={Rules} />
     <RouteWithSidebar exact path={Routes.Rules.create} component={RuleCreate} />
     <RouteWithSidebar exact path={Routes.Rules.edit} component={RuleCreate} />
-
-    <RouteWithSidebar exact path="/chart" component={TemperatureChart} />
 
     <RouteWithLoader path={Routes.Examples.prefix} component={ExamplePage} />
     <RouteWithSidebar

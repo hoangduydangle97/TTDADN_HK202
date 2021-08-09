@@ -8,18 +8,12 @@ function getFeedData(feed_key, getMany = false) {
   });
 }
 
-function getChartFeedData(feed_key, hours, start_time, end_time) {
-  let params;
-  if (hours) {
-    params = {
-      hours: hours,
-    };
-  } else {
-    params = {
-      start_time: start_time,
-      end_time: end_time,
-    };
-  }
+function getChartFeedData(feed_key, start_time, end_time) {
+  let params = {
+    start_time: start_time,
+    end_time: end_time,
+  };
+
   return axiosAdafruit.get(`/feeds/${feed_key}/data/chart`, {
     params: params,
   });

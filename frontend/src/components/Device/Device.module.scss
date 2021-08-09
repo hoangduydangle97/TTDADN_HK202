@@ -1,4 +1,4 @@
-@import '../../styles/utils/utils';
+@import "../../styles/utils/utils";
 
 .Device {
   border-radius: 6px;
@@ -33,6 +33,16 @@
 
   .Switch {
     margin-left: auto;
+    // display: flex;
+    // justify-content: flex-end;
+  }
+
+  .Settings {
+    margin-left: auto;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    cursor: pointer;
   }
 }
 
