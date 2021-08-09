@@ -27,8 +27,7 @@
     "caniuse-lite": "^1.0.30001237",
     "chartist": "^0.11.4",
     "chartist-plugin-tooltips-updated": "^0.1.4",
-    "cross-env": "^7.0.3",
-    "dotenv": "^10.0.0",
+    "env-cmd": "^10.1.0",
     "moment-timezone": "^0.5.31",
     "mqtt-react-hooks": "^2.0.0",
     "node-sass": "^4.14.1",
@@ -51,8 +50,8 @@
     "simplebar-react": "^2.3.0"
   },
   "scripts": {
-    "start": "cross-env HTTPS=true react-scripts start",
-    "build": "react-scripts build",
+    "start": "env-cmd react-scripts start",
+    "build": "env-cmd react-scripts build",
     "build-local": "PUBLIC_URL=./ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

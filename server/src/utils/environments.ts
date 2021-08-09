@@ -18,3 +18,4 @@ export const __MONGO_URI__ = process.env.MONGO_URI;
 export const __JWT_KEY__ = process.env.JWT_KEY;
 export const __ADAFRUIT_USER__ = process.env.ADAFRUIT_USER;
 export const __ADAFRUIT_KEY__ = process.env.ADAFRUIT_KEY;
+export const __PORT__ = process.env.PORT || 5200;

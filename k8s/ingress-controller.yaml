@@ -21,8 +21,15 @@ spec:
     - host: dadn.quangtuan.me
       http:
         paths:
-          - path: /graphql
-            pathType: Exact
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-svc
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
             backend:
               service:
                 name: server-svc

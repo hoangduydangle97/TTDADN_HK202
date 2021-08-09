@@ -14,6 +14,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
+  namespace: dadn
 spec:
   replicas: 1
   selector:
@@ -27,14 +28,3 @@ spec:
       containers:
         - name: frontend
           image: quangtuan9237/dadn-frontend
-          env:
-            - name: REACT_APP_ADAFRUIT_USER
-              valueFrom:
-                secretKeyRef:
-                  name: dadn-secret
-                  key: ADAFRUIT_USER
-            - name: REACT_APP_ADAFRUIT_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: dadn-secret
-                  key: ADAFRUIT_KEY

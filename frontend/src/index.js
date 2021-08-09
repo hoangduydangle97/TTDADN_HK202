@@ -13,10 +13,9 @@
 
 // * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
 
-import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 // core styles
@@ -32,7 +31,6 @@ import ScrollToTop from './components/ScrollToTop';
 import { Connector } from 'mqtt-react-hooks';
 import { __ADAFRUIT_KEY__, __ADAFRUIT_USER__ } from 'share/environments';
 
-dotenv.config();
 const queryClient = new QueryClient();
 ReactDOM.render(
   <Connector
@@ -46,10 +44,10 @@ ReactDOM.render(
   >
     {/* <QueryClientProvider client={queryClient}> */}
 
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <HomePage />
-    </HashRouter>
+    </BrowserRouter>
     {/* </QueryClientProvider> */}
   </Connector>,
   document.getElementById('root')
