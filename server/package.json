@@ -7,7 +7,10 @@
     "dev": "ts-node-dev src/index.ts",
     "start": "ts-node src/index.ts",
     "test": "jest --watchAll --no-cache",
-    "test:ci": "jest"
+    "test:ci": "jest",
+    "build_image": "docker build -t quangtuan9237/dadn-server:latest .",
+    "push_image": "docker push quangtuan9237/dadn-server:latest",
+    "release_image": "npm run build_image && npm run push_image"
   },
   "jest": {
     "preset": "ts-jest",

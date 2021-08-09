@@ -55,7 +55,10 @@
     "build": "react-scripts build",
     "build-local": "PUBLIC_URL=./ react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build_image": "docker build -t quangtuan9237/dadn-frontend:latest .",
+    "push_image": "docker push quangtuan9237/dadn-frontend:latest",
+    "release_image": "npm run build_image && npm run push_image"
   },
   "eslintConfig": {
     "extends": "react-app"

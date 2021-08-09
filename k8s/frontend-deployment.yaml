@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+  namespace: dadn
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: quangtuan9237/dadn-frontend
+          env:
+            - name: REACT_APP_ADAFRUIT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: dadn-secret
+                  key: ADAFRUIT_USER
+            - name: REACT_APP_ADAFRUIT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: dadn-secret
+                  key: ADAFRUIT_KEY
