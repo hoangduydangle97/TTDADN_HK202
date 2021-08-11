@@ -26,6 +26,7 @@ app.listen(__PORT__, async () => {
   await mqttAutomation.subscribe('light');
   await mqttAutomation.subscribe('temperature');
   await mqttAutomation.subscribe('pump');
+  await mqttAutomation.subscribe('gas');
   await mqttAutomation.updateListeners();
 });
 
