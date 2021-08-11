@@ -30,6 +30,7 @@ import HomePage from './pages/HomePage';
 import ScrollToTop from './components/ScrollToTop';
 import { Connector } from 'mqtt-react-hooks';
 import { __ADAFRUIT_KEY__, __ADAFRUIT_USER__ } from 'share/environments';
+import { AuthProvider } from 'lib/auth';
 
 const queryClient = new QueryClient();
 ReactDOM.render(
@@ -43,11 +44,12 @@ ReactDOM.render(
     }}
   >
     {/* <QueryClientProvider client={queryClient}> */}
-
-    <BrowserRouter>
-      <ScrollToTop />
-      <HomePage />
-    </BrowserRouter>
+    {/* <AuthProvider> */}
+        <BrowserRouter>
+          <ScrollToTop />
+          <HomePage />
+        </BrowserRouter>
+    {/* </AuthProvider> */}
     {/* </QueryClientProvider> */}
   </Connector>,
   document.getElementById('root')

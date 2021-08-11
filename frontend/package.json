@@ -41,6 +41,7 @@
     "react-live": "^2.2.3",
     "react-moment": "^1.1.1",
     "react-query": "^3.17.0",
+    "react-query-auth": "^1.1.0",
     "react-responsive-modal": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.3.1",
