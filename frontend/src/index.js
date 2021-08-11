@@ -16,7 +16,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
 // core styles
 import './scss/volt.scss';
@@ -44,10 +44,10 @@ ReactDOM.render(
   >
     {/* <QueryClientProvider client={queryClient}> */}
 
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <HomePage />
-    </BrowserRouter>
+    </HashRouter>
     {/* </QueryClientProvider> */}
   </Connector>,
   document.getElementById('root')
