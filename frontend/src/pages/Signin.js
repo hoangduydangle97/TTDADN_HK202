@@ -39,7 +39,7 @@ function SignIn() {
   React.useEffect(() => {
     if (dataSignin) {
       setToken(dataSignin.token);
-      history.push(Routes.Signup.path);
+      history.push(Routes.Dashboard.path);
     }
   }, [dataSignin, history, setToken]);
 

@@ -25,6 +25,9 @@ import {
 import NOTIFICATIONS_DATA from '../data/notifications';
 import Profile3 from '../assets/img/team/profile-picture-3.jpg';
 import FireAlarm from './FireAlarm/FireAlarm';
+import useToken from 'hooks/useToken';
+import { useHistory } from 'react-router-dom';
+import { Routes } from 'routes';
 
 export default (props) => {
   const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
@@ -32,6 +35,13 @@ export default (props) => {
     (acc, notif) => acc && notif.read,
     true
   );
+    const [,,removeToken] = useToken()
+    let history = useHistory()
+
+    function handleLogout(){
+      removeToken();
+      history.push(Routes.Signin.path)
+    }
 
   const markNotificationsAsRead = () => {
     setTimeout(() => {
@@ -39,9 +49,11 @@ export default (props) => {
     }, 300);
   };
 
+
   const Notification = (props) => {
     const { link, sender, image, time, message, read = false } = props;
     const readClassName = read ? '' : 'text-danger';
+
 
     return (
       <ListGroup.Item action href={link} className="border-bottom border-light">
@@ -149,7 +161,9 @@ export default (props) => {
 
                 <Dropdown.Divider />
 
-                <Dropdown.Item className="fw-bold">
+                <Dropdown.Item className="fw-bold"
+                onClick={handleLogout}
+                >
                   <FontAwesomeIcon
                     icon={faSignOutAlt}
                     className="text-danger me-2"
