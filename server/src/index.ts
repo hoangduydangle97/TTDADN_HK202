@@ -20,12 +20,13 @@ const start = async () => {
 };
 
 app.listen(__PORT__, async () => {
-  console.log(`Listening on port ${__PORT__}`);
+  console.log(`Listening on port ${__PORT__}!`);
 
   let result = await mqttAutomation.connect().catch(console.log);
   await mqttAutomation.subscribe('light');
   await mqttAutomation.subscribe('temperature');
   await mqttAutomation.subscribe('pump');
+  await mqttAutomation.subscribe('gas');
   await mqttAutomation.updateListeners();
 });
 

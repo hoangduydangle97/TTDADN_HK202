@@ -41,6 +41,8 @@ spec:
                 secretKeyRef:
                   name: dadn-secret
                   key: ADAFRUIT_KEY
+            - name: ADAFRUIT_HOST
+              value: "adafruit-svc"
             - name: ADAFRUIT_USER
               valueFrom:
                 secretKeyRef:
