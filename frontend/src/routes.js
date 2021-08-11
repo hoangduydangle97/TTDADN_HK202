@@ -11,8 +11,8 @@ const prefixExample = 'examples';
 export const Routes = {
   // pages
   Presentation: { path: '/' },
-  Signin: { path: '/sign-in' },
-  Signup: { path: '/sign-up' },
+  Signin: { path: '/login' },
+  Signup: { path: '/signup' },
   Devices: {
     icon: faMicrochip,
     prefix: `/${prefixDevice}`,
