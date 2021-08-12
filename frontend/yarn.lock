@@ -9644,6 +9644,11 @@ react-overlays@^4.1.0:
     uncontrollable "^7.0.0"
     warning "^4.0.3"
 
+react-query-auth@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-query-auth/-/react-query-auth-1.1.0.tgz#dcd2d94a1d08fb317488096ae1889ad287738de6"
+  integrity sha512-YUZ6y7ajU+umpc7Raticrbweq/U/PhBydQ1rphh16RZ6HOuom6pZ/+4x90kbf3/VFalgjbXSDlDXecVPtVmsow==
+
 react-query@^3.17.0:
   version "3.17.0"
   resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.17.0.tgz#461c0a030044760cd874c7ea8aa9d55c2dceb15d"
