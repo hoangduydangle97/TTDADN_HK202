@@ -30,7 +30,6 @@ import HomePage from './pages/HomePage';
 import ScrollToTop from './components/ScrollToTop';
 import { Connector } from 'mqtt-react-hooks';
 import { __ADAFRUIT_KEY__, __ADAFRUIT_USER__ } from 'share/environments';
-import { AuthProvider } from 'lib/auth';
 
 const queryClient = new QueryClient();
 ReactDOM.render(
