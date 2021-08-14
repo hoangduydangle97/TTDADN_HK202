@@ -3,8 +3,9 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Routes } from "routes";
 import { DeviceCreate } from "./DeviceCreate";
-import { DeviceHistory } from "./DeviceHistory";
+import { History } from "./history/History";
 import { Devices } from "./Devices";
+import { DeviceHistory } from "./history/DeviceHistory";
 
 export function DevicePage() {
   return (
@@ -12,7 +13,7 @@ export function DevicePage() {
       <Route exact path={Routes.Devices.list} component={Devices} />
       <Route exact path={Routes.Devices.create} component={DeviceCreate} />
       <Route exact path={Routes.Devices.edit} component={DeviceCreate} />
-      <Route exact path={Routes.Devices.history} component={DeviceHistory} />
+      <Route exact path={Routes.Devices.history} component={History} />
     </Switch>
   );
 }

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { app } from './app';
 import { mqttAutomation } from './mqtt-automation';
-import { __MONGO_URI__ } from './utils/environments';
+import { __MONGO_URI__, __PORT__ } from './utils/environments';
 
 const start = async () => {
   try {
@@ -19,13 +19,14 @@ const start = async () => {
   }
 };
 
-app.listen(5200, async () => {
-  console.log('Listening on port 5200');
+app.listen(__PORT__, async () => {
+  console.log(`Listening on port ${__PORT__}!`);
 
   let result = await mqttAutomation.connect().catch(console.log);
   await mqttAutomation.subscribe('light');
   await mqttAutomation.subscribe('temperature');
   await mqttAutomation.subscribe('pump');
+  await mqttAutomation.subscribe('gas');
   await mqttAutomation.updateListeners();
 });
 

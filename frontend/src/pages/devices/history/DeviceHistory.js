@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { AdafruitService } from "services/adafruit.service";
 import { DeviceService } from "services/devices.service";
-import classes from "../../components/Device/Device.module.scss";
+import classes from "../../../components/Device/Device.module.scss";
 
-export const DeviceHistory = ({ match }) => {
-  const { id } = match.params;
+export const DeviceHistory = ({ id }) => {
   const [listData, setListData] = useState([]);
   const [deviceName, setDeviceName] = useState("");
 

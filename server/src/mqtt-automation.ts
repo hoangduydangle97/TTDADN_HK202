@@ -1,4 +1,9 @@
-import { __ADAFRUIT_KEY__, __ADAFRUIT_USER__ } from './utils/environments';
+import {
+  __ADAFRUIT_HOST__,
+  __ADAFRUIT_KEY__,
+  __ADAFRUIT_PORT__,
+  __ADAFRUIT_USER__,
+} from './utils/environments';
 
 import mqtt from 'mqtt';
 import { Rule } from './models/Rules';
@@ -8,9 +13,12 @@ let client: mqtt.MqttClient;
 const listenerMap = new Map();
 
 function connect() {
+  console.log('mqtt host: ', __ADAFRUIT_HOST__);
+  console.log('mqtt port: ', __ADAFRUIT_PORT__);
+  console.log('mqtt user: ', __ADAFRUIT_USER__);
   client = mqtt.connect({
-    host: 'io.adafruit.com',
-    port: 8883,
+    host: __ADAFRUIT_HOST__,
+    port: __ADAFRUIT_PORT__,
     protocol: 'mqtts',
     username: __ADAFRUIT_USER__,
     password: __ADAFRUIT_KEY__,
@@ -21,6 +29,7 @@ function connect() {
 
   return new Promise<boolean>((resolve, reject) => {
     client.on('connect', function () {
+      console.log('CONNECTED');
       resolve(true);
     });
   });

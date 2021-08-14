@@ -21,12 +21,13 @@ import { useAxiosLocal } from '../api/local-api';
 function SignIn() {
   let history = useHistory();
   const [token, setToken] = useToken();
+  // setToken(null)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+// lam cai gi vay sao nhi la qua :)
   const [{ data: dataSignin, error: errorSignup }, executeSignin] =
     useAxiosLocal(
       {
@@ -39,7 +40,9 @@ function SignIn() {
   React.useEffect(() => {
     if (dataSignin) {
       setToken(dataSignin.token);
-      history.push(Routes.Signup.path);
+      // tuc la cai settoken nay loi? cko biet setoken xong ma ok thi 
+      console.log(dataSignin);
+      history.push(Routes.Dashboard.path);
     }
   }, [dataSignin, history, setToken]);
 

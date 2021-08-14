@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-dadn
+  namespace: dadn
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: public
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    external-dns.alpha.kubernetes.io/hostname: "dadn.quangtuan.me"
+    external-dns.alpha.kubernetes.io/ttl: "120"
+    external-dns.alpha.kubernetes.io/target: quangtuan.me
+
+spec:
+  tls:
+  - hosts:
+    - dadn.quangtuan.me
+    secretName: dadn-quangtuan-me-tls
+  rules:
+    - host: dadn.quangtuan.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-svc
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: server-svc
+                port:
+                  number: 4000

@@ -1,9 +1,10 @@
 import Axios from 'axios';
 import { TOKEN_PATH } from '../const';
 import { makeUseAxios } from 'axios-hooks';
+import { __API_BASE_URL__ } from 'share/environments';
 
 const axios = Axios.create({
-  baseURL: 'http://localhost:5200/api',
+  baseURL: __API_BASE_URL__,
 });
 
 // request interceptor to add token to request headers
